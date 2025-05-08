@@ -27,15 +27,6 @@ function App() {
   const [apiData, setApiData] = useState({
     temperature: { times: [], values: [] },
     location: { lat: 40.4168, lng: -3.7038 }, // Default location (Madrid center)
-    locations: [
-      { latitude: 40.4168, longitude: -3.7038, temperature: 22, nfc: "00000001" }, // Puerta del Sol
-      { latitude: 40.4183, longitude: -3.7074, temperature: 23, nfc: "00000002" }, // Plaza Mayor
-      { latitude: 40.4196, longitude: -3.7123, temperature: 24, nfc: "00000003" }, // Gran Vía
-      { latitude: 40.4210, longitude: -3.7167, temperature: 25, nfc: "00000004" }, // Plaza de España
-      { latitude: 40.4230, longitude: -3.7195, temperature: 26, nfc: "00000005" }, // Templo de Debod
-      { latitude: 40.4250, longitude: -3.7230, temperature: 27, nfc: "00000006" }, // Parque del Oeste
-      { latitude: 40.4270, longitude: -3.7265, temperature: 28, nfc: "00000007" }, // Moncloa
-    ], // Dummy locations in a line across Madrid
     eta: "30 minutos",
     nfcStatus: "Conectado",
     batteryLevel: 98,
@@ -147,10 +138,13 @@ function App() {
         grid: { color: 'rgba(255,255,255,0.1)' }
       },
       y: {
-        ticks: { color: 'rgba(255,255,255,0.7)' },
+        ticks: { 
+          color: 'rgba(255,255,255,0.7)', 
+          stepSize: 1 // Show more numbers on the scale
+        },
         grid: { color: 'rgba(255,255,255,0.1)' },
         suggestedMin: 0,
-        suggestedMax: 10
+        suggestedMax: 30 // Adjust the maximum value to fit your data
       }
     }
   };
@@ -207,7 +201,7 @@ function App() {
               <h2>  Temperatura por Hora</h2>
             </CardHeader>
             <CardContent className="chart-content-container">
-              <div className="chart-wrapper">
+              <div className="chart-wrapper" style={{ height: '500px', width: '100%' }}> {/* Increase height */}
                 <Line 
                   data={temperatureChartData} 
                   options={chartOptions} 

@@ -71,9 +71,9 @@
 }
 
 .chart-wrapper {
-  width: 100%;
-  height: calc(100% - 40px);
-  padding: 10px;
+  height: 500px; /* Increase height */
+  width: 100%; /* Full width */
+  margin: 0 auto;
 }
 
 /* Textos y elementos de interfaz */
